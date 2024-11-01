@@ -1,0 +1,25 @@
+name: Notebook Monitor
+
+on:
+   push:
+      paths: 
+       - '**/*.ipynbs'
+
+jobs: 
+     detect_notebook:
+             runs-on: ubuntu-latest
+             
+             steps: 
+               -name: Checkout code
+                uses: actions/checkout@v2
+
+              -name: Set up python
+               uses: actions/setup-python@v2
+               with: 
+                 python-version: '3.x'
+
+              -name: Get Notebook Details
+               id: notebook_info
+               run: |
+                  git diff --name-status HEAD^ HEAD | grep '^A' | grep '.ipynb$' > notebook_changes.txt
+                 
