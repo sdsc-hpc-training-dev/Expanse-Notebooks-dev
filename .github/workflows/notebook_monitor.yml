@@ -1,9 +1,9 @@
 name: Notebook Monitor
 
 on:
-   push:
-      paths: 
-       - '**/*.ipynb'
+  push:
+    paths: 
+      - '**/*.ipynb'
 
 jobs: 
   detect_notebook:
@@ -12,17 +12,23 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 2    # Fetch the last 2 commits to enable comparison
 
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: '3.x'
-        
 
       - name: Get Notebook Details
         id: notebook_info
         run: |
           # Get the name and status of added Jupyter Notebooks
-          git diff --name-status HEAD~1 HEAD | grep '^A' | grep '.ipynb$' > notebook_changes.txt
-
-
+          git diff --name-status HEAD~1 HEAD -- '*.ipynb' > notebook_changes.txt || echo "No notebook changes found"
+          
+          if [ -s notebook_changes.txt ]; then
+            echo "Changed notebooks found:"
+            cat notebook_changes.txt
+          else
+            echo "No notebook changes detected"
+          fi
