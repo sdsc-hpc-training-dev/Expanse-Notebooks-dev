@@ -18,8 +18,11 @@ jobs:
         with:
           python-version: '3.x'
         
+
       - name: Get Notebook Details
         id: notebook_info
         run: |
-          git diff --name-status HEAD | grep '^A' | grep '.ipynb$' > notebook_changes.txt
-                 
+          # Get the name and status of added Jupyter Notebooks
+          git diff --name-status HEAD~1 HEAD | grep '^A' | grep '.ipynb$' > notebook_changes.txt
+
+
