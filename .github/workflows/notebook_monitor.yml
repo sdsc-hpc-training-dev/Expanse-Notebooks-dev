@@ -3,7 +3,7 @@ name: Notebook Monitor
 on:
    push:
       paths: 
-       - '**/*.ipynbs'
+       - '**/*.ipynb'
 
 jobs: 
      detect_notebook:
