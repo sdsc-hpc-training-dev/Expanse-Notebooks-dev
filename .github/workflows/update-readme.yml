@@ -1,0 +1,33 @@
+name: Update README Table
+
+on:
+  push:
+    paths:
+      - '**/*.ipynb'  
+      ## when we update new notebooks
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+
+## Give access to the following Repostitory
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v3
+      # As this yml file uses python script, need to instal python
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.8'
+
+      - name: Run update script
+        run: python scripts/update_readme.py  #Path of the script file
+
+      - name: Commit updated README # update the new updated Readbe file
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git commit -m "Update README with new table format"
+          git push
