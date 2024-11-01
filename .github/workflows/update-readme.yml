@@ -22,7 +22,7 @@ jobs:
           python-version: '3.8'
 
       - name: Run update script
-        run: python scripts/update_readme.py  #Path of the script file
+        run: python python_scripts/update_readme.py  #Path of the script file
 
       - name: Commit updated README # update the new updated Readbe file
         run: |
