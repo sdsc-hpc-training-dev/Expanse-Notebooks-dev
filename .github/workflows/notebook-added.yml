@@ -1,6 +1,5 @@
-name: Append to README on New Notebook
+name: Append Notebook Info to README
 
-# Trigger the workflow when there's a push to the repository
 on:
   push:
     # Only run when a notebook (*.ipynb) is added
@@ -16,21 +15,32 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Append "new notebook added" to the README.md
-      - name: Append message to README.md
+      # Extract the name of the new notebook and append the new entry to README.md
+      - name: Append notebook info to README.md
         run: |
-          echo "new notebook added" >> README.md
-          
+          # Get the name of the new notebook
+          NEW_NOTEBOOK=$(git diff --name-only HEAD^ HEAD | grep '\.ipynb')
+
+          # Extract the notebook project name (directory name) and notebook name
+          PROJECT_NAME=$(basename $(dirname $NEW_NOTEBOOK))
+          NOTEBOOK_NAME=$(basename $NEW_NOTEBOOK)
+
+          # Generate the new table entry
+          NEW_ENTRY="| $PROJECT_NAME | [$NOTEBOOK_NAME](./$NEW_NOTEBOOK) |  |  |"
+
+          # Insert the new entry into the notebook table (before the last line)
+          sed -i '$i'"$NEW_ENTRY" README.md
+
       # Configure git and commit the changes
       - name: Configure git
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-      
+
       # Add and commit the changes
       - name: Commit changes
         run: |
           git add README.md
-          git commit -m "New notebook added, updated README.md"
+          git commit -m "Added $NOTEBOOK_NAME to README.md"
           git push
-
+        
