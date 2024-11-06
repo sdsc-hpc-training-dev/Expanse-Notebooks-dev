@@ -33,3 +33,4 @@ The following table lists the notebooks in alphabetical order. To view by type, 
 | String_Processing              | [Regression.ipynb](./String_Processing/Regression.ipynb)                                 | CPU, Serial       | `sklearn`, `linear_model`, `mean_squared_error`, `r2_score`, `sklearn.datasets`, `load_diabetes`, `numpy`, `matplotlib.pyplot`, `pandas`, `scipy`, `stats` |
 | Tensorflow_Image_Classification | [Image Classification.ipynb](./Tensorflow_Image_Classification/Image%20Classification.ipynb) | CPU, GPU, Parallel | `tensorflow`, `matplotlib.pyplot`, `numpy`, `PIL`, `keras`, `layers`, `tensorflow.keras`, `tensorflow.keras.models`, `Sequential`, `pathlib` |
 | Tensorflow_Simple_Training      | [SimpleTraining.ipynb](./Tensorflow_Simple_Training/SimpleTraining.ipynb)                | CPU, GPU, Parallel | `tensorflow`, `numpy`, `csv`, `matplotlib.pyplot` |
+new notebook added
