@@ -15,20 +15,26 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Extract the name of the new notebook and append the new entry to README.md
-      - name: Append notebook info to README.md
+      # Fetch all branches and tags to ensure proper commit history
+      - name: Fetch all history
         run: |
-          # Get the name of the new notebook
-          NEW_NOTEBOOK=$(git diff --name-only HEAD^ HEAD | grep '\.ipynb')
+          git fetch --all
 
-          # Extract the notebook project name (directory name) and notebook name
+      # Get the name of the newly added notebook
+      - name: Get new notebook file
+        id: new_notebook
+        run: |
+          NEW_NOTEBOOK=$(git diff --name-only --diff-filter=A HEAD~1 -- '*.ipynb')
+          echo "new_notebook=$NEW_NOTEBOOK" >> $GITHUB_ENV
+
+      # Append notebook info to README.md if a new notebook was added
+      - name: Append notebook info to README.md
+        if: env.new_notebook != ''
+        run: |
+          NEW_NOTEBOOK=${{ env.new_notebook }}
           PROJECT_NAME=$(basename $(dirname $NEW_NOTEBOOK))
           NOTEBOOK_NAME=$(basename $NEW_NOTEBOOK)
-
-          # Generate the new table entry
           NEW_ENTRY="| $PROJECT_NAME | [$NOTEBOOK_NAME](./$NEW_NOTEBOOK) |  |  |"
-
-          # Insert the new entry into the notebook table (before the last line)
           sed -i '$i'"$NEW_ENTRY" README.md
 
       # Configure git and commit the changes
@@ -41,6 +47,6 @@ jobs:
       - name: Commit changes
         run: |
           git add README.md
-          git commit -m "Added $NOTEBOOK_NAME to README.md"
+          git commit -m "Added new notebook to README.md"
           git push
-        
+
