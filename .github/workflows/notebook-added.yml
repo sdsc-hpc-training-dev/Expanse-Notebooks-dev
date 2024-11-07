@@ -1,34 +1,51 @@
-# Fetch the entire history to ensure we have access to previous commits
-- name: Fetch full history
-  run: git fetch --all --depth=2
+name: Update README with new notebook
 
-# Get the name of the new notebook
-- name: Get new notebook file
-  id: new_notebook
-  run: |
-    NEW_NOTEBOOK=$(git diff --name-only --diff-filter=A -- '*.ipynb')
-    echo "new_notebook=$NEW_NOTEBOOK" >> $GITHUB_ENV
+on:
+  push:
+    branches:
+      - main
 
-# Append notebook info to README.md if a new notebook was added
-- name: Append notebook info to README.md
-  if: env.new_notebook != ''
-  run: |
-    NEW_NOTEBOOK=${{ env.new_notebook }}
-    PROJECT_NAME=$(basename $(dirname $NEW_NOTEBOOK))
-    NOTEBOOK_NAME=$(basename $NEW_NOTEBOOK)
-    NEW_ENTRY="| $PROJECT_NAME | [$NOTEBOOK_NAME](./$NEW_NOTEBOOK) |  |  |"
-    sed -i '$i'"$NEW_ENTRY" README.md
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # Fetch all history to access previous commits
 
-# Configure git and commit the changes
-- name: Configure git
-  run: |
-    git config --global user.name "github-actions[bot]"
-    git config --global user.email "github-actions[bot]@users.noreply.github.com"
+      # Fetch the entire history to ensure we have access to previous commits
+      - name: Fetch full history
+        run: git fetch --all --depth=2
 
-# Add and commit the changes
-- name: Commit changes
-  run: |
-    git add README.md
-    git commit -m "Added new notebook to README.md"
-    git push
+      # Get the name of the new notebook
+      - name: Get new notebook file
+        id: new_notebook
+        run: |
+          NEW_NOTEBOOK=$(git diff --name-only --diff-filter=A -- '*.ipynb')
+          echo "new_notebook=$NEW_NOTEBOOK" >> $GITHUB_ENV
+
+      # Append notebook info to README.md if a new notebook was added
+      - name: Append notebook info to README.md
+        if: env.new_notebook != ''
+        run: |
+          NEW_NOTEBOOK=${{ env.new_notebook }}
+          PROJECT_NAME=$(basename $(dirname $NEW_NOTEBOOK))
+          NOTEBOOK_NAME=$(basename $NEW_NOTEBOOK)
+          NEW_ENTRY="| $PROJECT_NAME | [$NOTEBOOK_NAME](./$NEW_NOTEBOOK) |  |  |"
+          sed -i '$i'"$NEW_ENTRY" README.md
+
+      # Configure git and commit the changes
+      - name: Configure git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      # Add and commit the changes
+      - name: Commit changes
+        run: |
+          git add README.md
+          git commit -m "Added new notebook to README.md"
+          git push
 
