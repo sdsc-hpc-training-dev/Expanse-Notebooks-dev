@@ -76,9 +76,7 @@ def generate_table_row(project: str, notebook_path: str, existing_entries: Dict)
     modules_str = ', '.join(f'`{module}`' for module in metadata['required_modules']) if metadata['required_modules'] else ''
     type_str = metadata['type']
     
-    # Add (new) tag if it's a new entry
-    if entry_key not in existing_entries:
-        type_str += ' (new)'
+   
     
     return f"| {project} | [{notebook_name}](./{project}/{notebook_name}) | {type_str} | {modules_str} |"
 
