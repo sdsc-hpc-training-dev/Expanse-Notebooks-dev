@@ -30,9 +30,10 @@ The following table lists the notebooks in alphabetical order. To view by type, 
 | Multithreaded_Processing_CPU | [multithreaded_processing.ipynb](./Multithreaded_Processing_CPU/multithreaded_processing.ipynb) | CPU, Serial |  |
 | NumPy_Intro | [numpy_intro.ipynb](./NumPy_Intro/numpy_intro.ipynb) | CPU, Serial |  |
 | Python_Data_Analysis_Library | [PandasCSV.ipynb](./Python_Data_Analysis_Library/PandasCSV.ipynb) | CPU, Serial |  |
-| sample | [w_2.ipynb](./sample/w_2.ipynb) | GPU, Parallel (new) | `numpy`, `cuda`, `cupy`, `pandas` |
+| sample | [w_2.ipynb](./sample/w_2.ipynb) | GPU, Parallel | `numpy`, `cuda`, `cupy`, `pandas` |
 | String_Processing | [Regression.ipynb](./String_Processing/Regression.ipynb) | CPU, Serial |  |
 | Tensorflow_Image_Classification | [Image Classification.ipynb](./Tensorflow_Image_Classification/Image Classification.ipynb) | CPU, Serial |  |
 | Tensorflow_Simple_Training | [SimpleTraining.ipynb](./Tensorflow_Simple_Training/SimpleTraining.ipynb) | CPU, Serial |  |
+
 
 
