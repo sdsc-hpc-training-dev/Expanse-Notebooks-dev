@@ -2,7 +2,7 @@ import os
 import nbformat
 import yaml
 import re
-from typing import Dict, Optional
+from typing import Dict, List, Optional
 
 def extract_front_matter(notebook_path: str) -> Dict[str, any]:
     """
@@ -15,8 +15,8 @@ def extract_front_matter(notebook_path: str) -> Dict[str, any]:
 
         # Look for front matter in the first markdown cell
         if nb.cells and nb.cells[0].cell_type == 'markdown':
-            content = nb.cells[0].source
-            front_matter_match = re.match(r'^---\n(.*?\n)---\n', content, re.DOTALL)
+            content = nb.cells[0].source.strip()
+            front_matter_match = re.match(r'^---\n(.*?\n)---\n?', content, re.DOTALL)
             
             if front_matter_match:
                 try:
@@ -40,18 +40,57 @@ def extract_front_matter(notebook_path: str) -> Dict[str, any]:
             'required_modules': []
         }
 
-def generate_table_row(project: str, notebook_path: str) -> str:
+def parse_existing_table(content: str) -> Dict[str, Dict]:
+    """Parse existing table entries into a dictionary."""
+    existing_entries = {}
+    table_pattern = r'\|\s*([^|]+?)\s*\|\s*\[([^]]+?)\]([^|]+?)\|\s*([^|]+?)\s*\|\s*([^|]+?)\s*\|'
+    matches = re.finditer(table_pattern, content)
+    
+    for match in matches:
+        project = match.group(1).strip()
+        notebook = match.group(2).strip()
+        type_info = match.group(4).strip()
+        modules = match.group(5).strip()
+        
+        existing_entries[f"{project}/{notebook}"] = {
+            'project': project,
+            'notebook': notebook,
+            'type': type_info,
+            'modules': modules
+        }
+    
+    return existing_entries
+
+def generate_table_row(project: str, notebook_path: str, existing_entries: Dict) -> str:
     """Generate a markdown table row for a notebook."""
     notebook_name = os.path.basename(notebook_path)
+    entry_key = f"{project}/{notebook_name}"
+    
+    # If entry exists and is not marked as '(new)', keep existing data
+    if entry_key in existing_entries and '(new)' not in existing_entries[entry_key]['type']:
+        entry = existing_entries[entry_key]
+        return f"| {entry['project']} | [{entry['notebook']}](./{project}/{notebook_name}) | {entry['type']} | {entry['modules']} |"
+    
+    # For new or updated entries, get metadata from notebook
     metadata = extract_front_matter(notebook_path)
-    
-    # Convert required_modules list to formatted string
     modules_str = ', '.join(f'`{module}`' for module in metadata['required_modules']) if metadata['required_modules'] else ''
+    type_str = metadata['type']
     
-    return f"| {project} | [{notebook_name}](./{project}/{notebook_name}) | {metadata['type']} | {modules_str} |"
+    # Add (new) tag if it's a new entry
+    if entry_key not in existing_entries:
+        type_str += ' (new)'
+    
+    return f"| {project} | [{notebook_name}](./{project}/{notebook_name}) | {type_str} | {modules_str} |"
 
 def update_readme_table(root_dir: str, readme_path: str):
     """Update the README.md file with current notebook information."""
+    # Read current README
+    with open(readme_path, 'r', encoding='utf-8') as f:
+        content = f.read()
+    
+    # Parse existing table entries
+    existing_entries = parse_existing_table(content)
+    
     # Get all notebooks
     notebooks = []
     for dirpath, dirnames, filenames in os.walk(root_dir):
@@ -68,11 +107,8 @@ def update_readme_table(root_dir: str, readme_path: str):
     notebooks.sort(key=lambda x: x[0].lower())
 
     # Generate table rows
-    table_rows = [generate_table_row(project, nb_path) for project, nb_path in notebooks]
-
-    # Read current README
-    with open(readme_path, 'r', encoding='utf-8') as f:
-        content = f.read()
+    table_rows = [generate_table_row(project, nb_path, existing_entries) 
+                 for project, nb_path in notebooks]
 
     # Find the table section
     table_pattern = r'(\|\s*Notebook Project\s*\|.*?\n\|[-\s|]*\n)(.*?)(?=\n\n|$)'
