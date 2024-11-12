@@ -36,3 +36,4 @@ The following table lists the notebooks in alphabetical order. To view by type, 
 | Tensorflow_Simple_Training | [SimpleTraining.ipynb](./Tensorflow_Simple_Training/SimpleTraining.ipynb) | CPU, Serial |  |
 
 
+
