@@ -13,7 +13,7 @@ The following table lists the notebooks in alphabetical order. To view by type, 
 ### Notebook Table: Alphabetical Order
 | Notebook Project               | Notebook                                                                                   | Type               | Required (Sub) Modules                   |
 |--------------------------------|--------------------------------------------------------------------------------------------|--------------------|------------------------------------------|
-| Clustering_Visulizations | [Introduction_to_Clustering.ipynb](./Clustering_Visulizations/Introduction_to_Clustering.ipynb) | CPU, Serial (new) | `scikit-learn`, `numpy`, `matplotlib`, `sciPy`, `make_blobs`, `KMeans`, `dendrogram`, `linkage`, `AgglomerativeClustering` |
+| Clustering_Visulizations | [Introduction_to_Clustering.ipynb](./Clustering_Visulizations/Introduction_to_Clustering.ipynb) | CPU, Serial | `scikit-learn`, `numpy`, `matplotlib`, `sciPy`, `make_blobs`, `KMeans`, `dendrogram`, `linkage`, `AgglomerativeClustering` |
 | CUDA_GPU_Computing_Pi | [cuda_gpu_nvidia_computing_pi_solution.ipynb](./CUDA_GPU_Computing_Pi/cuda_gpu_nvidia_computing_pi_solution.ipynb) | GPU, Parallel | `numba`, `math`, `numpy`, `cuda` |
 | CUDA_GPU_Distance_Matrix | [cuda_gpu_nvidia_distance_matrix_solution.ipynb](./CUDA_GPU_Distance_Matrix/cuda_gpu_nvidia_distance_matrix_solution.ipynb) | GPU, Parallel | `numba`, `math`, `numpy`, `cuda` |
 | CUDA_GPU_Law_Of_Cosines | [cuda_gpu_nvidia_law_of_cosines_solution.ipynb](./CUDA_GPU_Law_Of_Cosines/cuda_gpu_nvidia_law_of_cosines_solution.ipynb) | GPU, Parallel | `numba`, `math`, `numpy`, `vectorize`, `cuda` |
@@ -30,10 +30,11 @@ The following table lists the notebooks in alphabetical order. To view by type, 
 | Multithreaded_Processing_CPU | [multithreaded_processing.ipynb](./Multithreaded_Processing_CPU/multithreaded_processing.ipynb) | CPU, Parallel | `mkl`, `numpy`, `dask.array` |
 | NumPy_Intro | [numpy_intro.ipynb](./NumPy_Intro/numpy_intro.ipynb) | CPU, Serial | `numpy`, `operator`, `add`, `matplotlib.pyplot`, `collections`, `Counter` |
 | Python_Data_Analysis_Library | [PandasCSV.ipynb](./Python_Data_Analysis_Library/PandasCSV.ipynb) | CPU, Serial | `IPython.display`, `Image`, `pandas` |
-| sample | [w_3.ipynb](./sample/w_3.ipynb) | CPU, GPU, Parallel (new) | `hello`, `numpy`, `git` |
+| sample | [www.ipynb](./sample/www.ipynb) | GPU, Serial (new) | `git` |
 | String_Processing | [Regression.ipynb](./String_Processing/Regression.ipynb) | CPU, Serial | `sklearn`, `linear_model`, `mean_squared_error`, `r2_score`, `sklearn.datasets`, `load_diabetes`, `numpy`, `matplotlib.pyplot`, `pandas`, `scipy`, `stats` |
 | Tensorflow_Image_Classification | [Image Classification.ipynb](./Tensorflow_Image_Classification/Image Classification.ipynb) | CPU, GPU, Parallel | `tensorflow`, `matplotlib.pyplot`, `numpy`, `PIL`, `keras`, `layers`, `tensorflow.keras`, `tensorflow.keras.models`, `Sequential`, `pathlib` |
 | Tensorflow_Simple_Training | [SimpleTraining.ipynb](./Tensorflow_Simple_Training/SimpleTraining.ipynb) | CPU, GPU, Parallel | `tensorflow`, `numpy`, `csv`, `matplotlib.pyplot` |
+
 
 
 
