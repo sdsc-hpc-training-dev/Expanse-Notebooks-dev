@@ -1,7 +1,5 @@
 ## Expanse-Notebooks-dev: Notebook Table Sorted by Type (Serial/Parallel)
 
-### Serial Notebooks
-
 | Notebook Project             | Notebook                                                                                   | Type      | Required (Sub) Modules                                                                                             |
 |------------------------------|--------------------------------------------------------------------------------------------|-----------|----------------------------------------------------------------------------------------------------------------------|
 | Clustering_Visualizations    | [Introduction_to_Clustering.ipynb](./Clustering_Visulizations/Introduction_to_Clustering.ipynb) | CPU, Serial | `scikit-learn`, `numpy`, `matplotlib`, `sciPy`, `make_blobs`, `KMeans`, `dendrogram`, `linkage`, `AgglomerativeClustering` |
@@ -14,11 +12,6 @@
 | NumPy_Intro                  | [numpy_intro.ipynb](./NumPy_Intro/numpy_intro.ipynb)                                     | CPU, Serial | `numpy`, `operator`, `add`, `matplotlib.pyplot`, `collections`, `Counter`                                           |
 | String_Processing            | [Regression.ipynb](./String_Processing/Regression.ipynb)                                 | CPU, Serial | `sklearn`, `linear_model`, `mean_squared_error`, `r2_score`, `sklearn.datasets`, `load_diabetes`, `numpy`, `matplotlib.pyplot`, `pandas`, `scipy`, `stats` |
 | Hello_World_GPU              | [hello_world_gpu.ipynb](./Hello_World_GPU/hello_world_gpu.ipynb)                         | GPU, Serial |                                                                                                                      |
-
-### Parallel Notebooks
-
-| Notebook Project               | Notebook                                                                                   | Type                | Required (Sub) Modules                           |
-|--------------------------------|--------------------------------------------------------------------------------------------|---------------------|--------------------------------------------------|
 | Dask_Graph_CPU                 | [dask_graphs_CPU.ipynb](./Dask_Graph_CPU/dask_graphs_CPU.ipynb)                           | CPU, Parallel       | `dask`                                           |
 | Multithreaded_Processing_CPU   | [multithreaded_processing.ipynb](./Multithreaded_Processing_CPU/multithreaded_processing.ipynb) | CPU, Parallel       | `mkl`, `numpy`, `dask.array`                     |
 | Python_Data_Analysis_Library   | [PandasCSV.ipynb](./Python_Data_Analysis_Library/PandasCSV.ipynb)                         | CPU, Parallel       | `IPython.display`, `Image`, `pandas`             |
