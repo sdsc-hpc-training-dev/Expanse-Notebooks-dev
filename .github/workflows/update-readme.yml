@@ -9,7 +9,8 @@ on:
       - keyword        # Added your branch name
       - main          # Kept other branches for future
       - master
-  # Add manual trigger option
+      - git_1
+        # Add manual trigger option
   workflow_dispatch:
 
 jobs:
