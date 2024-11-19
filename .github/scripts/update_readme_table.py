@@ -1,4 +1,3 @@
-
 import os
 import nbformat
 import yaml
@@ -59,7 +58,7 @@ def generate_table_rows(notebooks, existing_entries):
 
 def update_readme(notebooks, readme_path):
     """
-    Update the README.md file.
+    Update the README.md file with sorted notebooks.
     """
     with open(readme_path, 'r', encoding='utf-8') as f:
         content = f.read()
@@ -67,10 +66,13 @@ def update_readme(notebooks, readme_path):
     existing_entries = parse_table(content)
     new_entries = generate_table_rows(notebooks, existing_entries)
 
+    # Sort all notebooks alphabetically
+    sorted_entries = sorted(new_entries, key=lambda x: x['notebook'].lower())
+
     # Generate rows for README
     rows = "\n".join(
         f"| {entry['project']} | [{entry['notebook']}](./{entry['project']}/{entry['notebook']}) | {entry['type']} | {entry['modules']} |"
-        for entry in new_entries
+        for entry in sorted_entries
     )
 
     # Replace the table in README.md
@@ -82,7 +84,7 @@ def update_readme(notebooks, readme_path):
 
 def update_notebook_table(notebooks, md_path):
     """
-    Update the Notebook_Table_Type(Serial_Parallel).md file.
+    Update the Notebook_Table_Type(Serial_Parallel).md file with sorted entries.
     """
     with open(md_path, 'r', encoding='utf-8') as f:
         content = f.read()
@@ -91,8 +93,14 @@ def update_notebook_table(notebooks, md_path):
     new_entries = generate_table_rows(notebooks, existing_entries)
 
     # Sort into Serial and Parallel
-    serial_notebooks = [entry for entry in new_entries if 'Serial' in entry['type']]
-    parallel_notebooks = [entry for entry in new_entries if 'Parallel' in entry['type']]
+    serial_notebooks = sorted(
+        [entry for entry in new_entries if 'Serial' in entry['type']],
+        key=lambda x: x['notebook'].lower()
+    )
+    parallel_notebooks = sorted(
+        [entry for entry in new_entries if 'Parallel' in entry['type']],
+        key=lambda x: x['notebook'].lower()
+    )
 
     def format_section(title, notebooks):
         rows = "\n".join(
