@@ -26,7 +26,7 @@ The following table lists the notebooks in alphabetical order. To view by type, 
 | Clustering_Visulizations | [Introduction_to_Clustering.ipynb](./Clustering_Visulizations/Introduction_to_Clustering.ipynb) | CPU, Serial | `scikit-learn`, `numpy`, `matplotlib`, `sciPy`, `make_blobs`, `KMeans`, `dendrogram`, `linkage`, `AgglomerativeClustering` |
 | String_Processing | [Regression.ipynb](./String_Processing/Regression.ipynb) | CPU, Serial | `sklearn`, `linear_model`, `mean_squared_error`, `r2_score`, `sklearn.datasets`, `load_diabetes`, `numpy`, `matplotlib.pyplot`, `pandas`, `scipy`, `stats` |
 | Tensorflow_Image_Classification | [Image Classification.ipynb](./Tensorflow_Image_Classification/Image Classification.ipynb) | CPU, GPU, Parallel | `tensorflow`, `matplotlib.pyplot`, `numpy`, `PIL`, `keras`, `layers`, `tensorflow.keras`, `tensorflow.keras.models`, `Sequential`, `pathlib` |
-| sample | [1.ipynb](./sample/1.ipynb) | CPU, Serial |  |
+| sample | [sample_1.ipynb](./sample/sample_1.ipynb) | CPU, Serial |  |
 | Python_Data_Analysis_Library | [PandasCSV.ipynb](./Python_Data_Analysis_Library/PandasCSV.ipynb) | CPU, Serial | `IPython.display`, `Image`, `pandas` |
 | Data_Analysis | [data_analysis_pandas.ipynb](./Data_Analysis/data_analysis_pandas.ipynb) | CPU, Serial | `numpy`, `pandas` |
 | Dask_Graph_CPU | [dask_graphs_CPU.ipynb](./Dask_Graph_CPU/dask_graphs_CPU.ipynb) | CPU, Parallel | `dask` |
@@ -34,6 +34,7 @@ The following table lists the notebooks in alphabetical order. To view by type, 
 | Image_Processing | [Pillow.ipynb](./Image_Processing/Pillow.ipynb) | CPU, Serial | `PIL`, `Image`, `sys`, `ImageFilter`, `ImageEnhance` |
 | Hello_World_GPU | [hello_world_gpu.ipynb](./Hello_World_GPU/hello_world_gpu.ipynb) | GPU, Serial |  |
 | Multithreaded_Processing_CPU | [multithreaded_processing.ipynb](./Multithreaded_Processing_CPU/multithreaded_processing.ipynb) | CPU, Serial | `mkl`, `numpy`, `dask.array` |
+
 
 
 
