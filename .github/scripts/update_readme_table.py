@@ -111,9 +111,9 @@ def update_serial_parallel_table(notebooks: List[Tuple[str, str]], md_path: str)
 
     content = (
         "## Expanse-Notebooks-dev: Notebook Table Sorted by Type (Serial/Parallel)\n\n"
-        + format_table_section("Serial", serial_notebooks)
+        + format_table_section("Serial Notebooks", serial_notebooks)
         + "\n"
-        + format_table_section("Parallel", parallel_notebooks)
+        + format_table_section("Parallel Notebooks", parallel_notebooks)
     )
 
     with open(md_path, 'w', encoding='utf-8') as f:
