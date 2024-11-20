@@ -125,7 +125,7 @@ def update_notebook_table(notebooks, md_path):
 
     # Combine all sections with headers
     updated_content = (
-        "## Expanse-Notebooks-dev: Notebook Table Sorted by Type (Serial/Parallel)\n\n"
+        "## Expanse-Notebooks-dev: Notebook Table Sorted by Type (Serial_Parallel)\n\n"
         + format_section("Serial Notebooks", serial_notebooks)
     )
 
@@ -142,7 +142,7 @@ def update_notebook_table(notebooks, md_path):
 if __name__ == '__main__':
     root_dir = '.'  # Specify root directory of notebooks
     readme_path = 'README.md'
-    table_md_path = 'Notebook_Table_Type(Serial\Parallel).md'
+    table_md_path = 'Notebook_Table_Type(Serial_Parallel).md'
 
     notebooks = []
     for dirpath, _, filenames in os.walk(root_dir):

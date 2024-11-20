@@ -5,7 +5,7 @@ on:
     paths:
       - '**/*.ipynb'
       - '**/README.md'
-      - '**/Notebook_Table_Type(Serial\Parallel).md'  # Added this file
+      - '**/Notebook_Table_Type(Serial_Parallel).md'  # Added this file
     branches:
       - keyword
       - main
@@ -51,13 +51,13 @@ jobs:
         run: |
           git status
           git diff README.md
-          git diff "Notebook_Table_Type(Serial\Parallel).md"
+          git diff "Notebook_Table_Type(Serial_Parallel).md"
           
       - name: Commit changes
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add README.md "Notebook_Table_Type(Serial\Parallel).md"
+          git add README.md "Notebook_Table_Type(Serial_Parallel).md"
           if git diff --cached --quiet; then
             echo "No changes to commiti"
           else
@@ -70,4 +70,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: git_1
-
+          
