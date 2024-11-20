@@ -85,6 +85,7 @@ def update_readme(notebooks, readme_path):
 def update_notebook_table(notebooks, md_path):
     """
     Update the Notebook_Table_Type(Serial_Parallel).md file with sorted entries.
+    Notebooks are grouped by type (Serial before Parallel) and sorted alphabetically within each group.
     """
     with open(md_path, 'r', encoding='utf-8') as f:
         content = f.read()
@@ -92,30 +93,49 @@ def update_notebook_table(notebooks, md_path):
     existing_entries = parse_table(content)
     new_entries = generate_table_rows(notebooks, existing_entries)
 
-    # Sort into Serial and Parallel
-    serial_notebooks = sorted(
-        [entry for entry in new_entries if 'Serial' in entry['type']],
-        key=lambda x: x['notebook'].lower()
-    )
-    parallel_notebooks = sorted(
-        [entry for entry in new_entries if 'Parallel' in entry['type']],
-        key=lambda x: x['notebook'].lower()
-    )
+    # Create categories for different types of notebooks
+    serial_notebooks = []
+    parallel_notebooks = []
+    hybrid_notebooks = []  # For notebooks that can run on both CPU and GPU
+
+    # Categorize notebooks based on their type
+    for entry in new_entries:
+        notebook_type = entry['type'].lower()
+        if 'parallel' in notebook_type:
+            parallel_notebooks.append(entry)
+        elif 'cpu, gpu' in notebook_type or 'gpu, cpu' in notebook_type:
+            hybrid_notebooks.append(entry)
+        else:  # Default to serial if not explicitly parallel
+            serial_notebooks.append(entry)
+
+    # Sort each category alphabetically by notebook name
+    serial_notebooks.sort(key=lambda x: x['notebook'].lower())
+    parallel_notebooks.sort(key=lambda x: x['notebook'].lower())
+    hybrid_notebooks.sort(key=lambda x: x['notebook'].lower())
 
     def format_section(title, notebooks):
+        if not notebooks:  # Skip empty sections
+            return ""
+            
         rows = "\n".join(
             f"| {entry['project']} | [{entry['notebook']}](./{entry['project']}/{entry['notebook']}) | {entry['type']} | {entry['modules']} |"
             for entry in notebooks
         )
-        return f"### {title} Notebooks\n\n| Notebook Project | Notebook | Type | Required (Sub) Modules |\n|-----------------|----------|------|------------------------|\n{rows}\n"
+        return f"### {title}\n\n| Notebook Project | Notebook | Type | Required (Sub) Modules |\n|-----------------|----------|------|------------------------|\n{rows}\n"
 
+    # Combine all sections with headers
     updated_content = (
         "## Expanse-Notebooks-dev: Notebook Table Sorted by Type (Serial/Parallel)\n\n"
-        + format_section("Serial", serial_notebooks)
-        + "\n"
-        + format_section("Parallel", parallel_notebooks)
+        + format_section("Serial Notebooks", serial_notebooks)
     )
 
+    if parallel_notebooks:
+        updated_content += "\n" + format_section("Parallel Notebooks", parallel_notebooks)
+    
+    if hybrid_notebooks:
+        updated_content += "\n" + format_section("Hybrid (CPU/GPU) Notebooks", hybrid_notebooks)
+
+    # Write the updated content to the file
     with open(md_path, 'w', encoding='utf-8') as f:
         f.write(updated_content)
 
@@ -134,4 +154,3 @@ if __name__ == '__main__':
     # Update both README.md and Notebook_Table_Type(Serial_Parallel).md
     update_readme(notebooks, readme_path)
     update_notebook_table(notebooks, table_md_path)
-
