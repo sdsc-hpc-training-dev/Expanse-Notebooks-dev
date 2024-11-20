@@ -1,3 +1,8 @@
+import os
+import nbformat
+import yaml
+import re
+
 def update_cpu_gpu_table(notebooks, md_path):
     """
     Update the Notebook_Table_Type(CPU_GPU).md file with entries sorted by CPU/GPU type.
