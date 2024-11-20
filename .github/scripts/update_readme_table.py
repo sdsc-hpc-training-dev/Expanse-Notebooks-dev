@@ -1,156 +1,96 @@
-import os
-import nbformat
-import yaml
-import re
+def update_cpu_gpu_table(notebooks, md_path):
+    """
+    Update the Notebook_Table_Type(CPU_GPU).md file with entries sorted by CPU/GPU type.
+    """
+    print(f"Updating CPU/GPU table at: {md_path}")
 
-def extract_front_matter(notebook_path):
-    """
-    Extract YAML front matter from the first markdown cell of a notebook.
-    Returns default values if no front matter is found.
-    """
     try:
-        with open(notebook_path, 'r', encoding='utf-8') as f:
-            nb = nbformat.read(f, as_version=4)
+        # Read existing content or create if doesn't exist
+        try:
+            with open(md_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+        except FileNotFoundError:
+            content = "## Expanse-Notebooks-dev: Notebook Table Sorted by Type (CPU/GPU)\n\n"
+            print(f"Creating new file: {md_path}")
 
-        if nb.cells and nb.cells[0].cell_type == 'markdown':
-            content = nb.cells[0].source.strip()
-            front_matter_match = re.match(r'^---\n(.*?\n)---\n?', content, re.DOTALL)
-            if front_matter_match:
-                metadata = yaml.safe_load(front_matter_match.group(1))
-                return {
-                    'type': metadata.get('type', 'CPU, Serial'),
-                    'required_modules': metadata.get('required_modules', [])
-                }
-    except Exception as e:
-        print(f"Error processing {notebook_path}: {e}")
-    return {'type': 'CPU, Serial', 'required_modules': []}
+        new_entries = generate_table_rows(notebooks, [])
 
-def parse_table(content):
-    """
-    Parse existing notebook table into a dictionary.
-    """
-    entries = []
-    table_pattern = r'\|\s*([^|]+)\s*\|\s*\[([^]]+)]\([^)]*\)\s*\|\s*([^|]+)\s*\|\s*(.*)\|'
-    for match in re.finditer(table_pattern, content):
-        entries.append({
-            'project': match.group(1).strip(),
-            'notebook': match.group(2).strip(),
-            'type': match.group(3).strip(),
-            'modules': match.group(4).strip()
-        })
-    return entries
+        # Create categories for different types of notebooks
+        cpu_notebooks = []
+        gpu_notebooks = []
+        hybrid_notebooks = []  # For notebooks that can use both CPU and GPU
 
-def generate_table_rows(notebooks, existing_entries):
-    """
-    Generate markdown rows for the notebook table.
-    """
-    rows = []
-    for project, notebook_path in notebooks:
-        metadata = extract_front_matter(notebook_path)
-        modules_str = ', '.join(f'`{mod}`' for mod in metadata['required_modules']) if metadata['required_modules'] else ''
-        rows.append({
-            'project': project,
-            'notebook': os.path.basename(notebook_path),
-            'type': metadata['type'],
-            'modules': modules_str
-        })
-    return rows
+        # Categorize notebooks based on their type
+        for entry in new_entries:
+            notebook_type = entry['type'].lower()
+            if 'cpu, gpu' in notebook_type or 'gpu, cpu' in notebook_type:
+                hybrid_notebooks.append(entry)
+            elif 'gpu' in notebook_type:
+                gpu_notebooks.append(entry)
+            elif 'cpu' in notebook_type or 'serial' in notebook_type:  # Assume serial implies CPU
+                cpu_notebooks.append(entry)
+            else:
+                cpu_notebooks.append(entry)  # Default to CPU if not specified
 
-def update_readme(notebooks, readme_path):
-    """
-    Update the README.md file with sorted notebooks.
-    """
-    with open(readme_path, 'r', encoding='utf-8') as f:
-        content = f.read()
+        # Sort each category alphabetically by notebook name
+        cpu_notebooks.sort(key=lambda x: x['notebook'].lower())
+        gpu_notebooks.sort(key=lambda x: x['notebook'].lower())
+        hybrid_notebooks.sort(key=lambda x: x['notebook'].lower())
 
-    existing_entries = parse_table(content)
-    new_entries = generate_table_rows(notebooks, existing_entries)
-
-    # Sort all notebooks alphabetically
-    sorted_entries = sorted(new_entries, key=lambda x: x['notebook'].lower())
-
-    # Generate rows for README
-    rows = "\n".join(
-        f"| {entry['project']} | [{entry['notebook']}](./{entry['project']}/{entry['notebook']}) | {entry['type']} | {entry['modules']} |"
-        for entry in sorted_entries
-    )
-
-    # Replace the table in README.md
-    table_pattern = r'(\|\s*Notebook Project\s*\|.*?\n\|[-\s|]*\n)(.*?)(?=\n\n|$)'
-    content = re.sub(table_pattern, f"\\1{rows}\n", content, flags=re.DOTALL)
-
-    with open(readme_path, 'w', encoding='utf-8') as f:
-        f.write(content)
-
-def update_notebook_table(notebooks, md_path):
-    """
-    Update the Notebook_Table_Type(Serial_Parallel).md file with sorted entries.
-    Notebooks are grouped by type (Serial before Parallel) and sorted alphabetically within each group.
-    """
-    with open(md_path, 'r', encoding='utf-8') as f:
-        content = f.read()
-
-    existing_entries = parse_table(content)
-    new_entries = generate_table_rows(notebooks, existing_entries)
-
-    # Create categories for different types of notebooks
-    serial_notebooks = []
-    parallel_notebooks = []
-    hybrid_notebooks = []  # For notebooks that can run on both CPU and GPU
-
-    # Categorize notebooks based on their type
-    for entry in new_entries:
-        notebook_type = entry['type'].lower()
-        if 'parallel' in notebook_type:
-            parallel_notebooks.append(entry)
-        elif 'cpu, gpu' in notebook_type or 'gpu, cpu' in notebook_type:
-            hybrid_notebooks.append(entry)
-        else:  # Default to serial if not explicitly parallel
-            serial_notebooks.append(entry)
-
-    # Sort each category alphabetically by notebook name
-    serial_notebooks.sort(key=lambda x: x['notebook'].lower())
-    parallel_notebooks.sort(key=lambda x: x['notebook'].lower())
-    hybrid_notebooks.sort(key=lambda x: x['notebook'].lower())
-
-    def format_section(title, notebooks):
-        if not notebooks:  # Skip empty sections
-            return ""
+        def format_section(title, notebooks):
+            if not notebooks:
+                return ""
             
-        rows = "\n".join(
-            f"| {entry['project']} | [{entry['notebook']}](./{entry['project']}/{entry['notebook']}) | {entry['type']} | {entry['modules']} |"
-            for entry in notebooks
-        )
-        return f"### {title}\n\n| Notebook Project | Notebook | Type | Required (Sub) Modules |\n|-----------------|----------|------|------------------------|\n{rows}\n"
+            table_header = "| Notebook Project | Notebook | Type | Required (Sub) Modules |\n|-----------------|----------|------|------------------------|\n"
+            rows = "\n".join(
+                f"| {entry['project']} | [{entry['notebook']}](./{entry['project']}/{entry['notebook']}) | {entry['type']} | {entry['modules']} |"
+                for entry in notebooks
+            )
+            return f"### {title}\n\n{table_header}{rows}\n"
 
-    # Combine all sections with headers
-    updated_content = (
-        "## Expanse-Notebooks-dev: Notebook Table Sorted by Type (Serial_Parallel)\n\n"
-        + format_section("Serial Notebooks", serial_notebooks)
-    )
+        # Build the content
+        updated_content = [
+            "## Expanse-Notebooks-dev: Notebook Table Sorted by Type (CPU/GPU)\n"
+        ]
+        
+        if cpu_notebooks:
+            updated_content.append(format_section("CPU Notebooks", cpu_notebooks))
+        if gpu_notebooks:
+            updated_content.append(format_section("GPU Notebooks", gpu_notebooks))
+        if hybrid_notebooks:
+            updated_content.append(format_section("Hybrid (CPU/GPU) Notebooks", hybrid_notebooks))
 
-    if parallel_notebooks:
-        updated_content += "\n" + format_section("Parallel Notebooks", parallel_notebooks)
-    
-    if hybrid_notebooks:
-        updated_content += "\n" + format_section("Hybrid (CPU/GPU) Notebooks", hybrid_notebooks)
+        final_content = "\n".join(filter(None, updated_content))
 
-    # Write the updated content to the file
-    with open(md_path, 'w', encoding='utf-8') as f:
-        f.write(updated_content)
+        # Write the updated content
+        with open(md_path, 'w', encoding='utf-8') as f:
+            f.write(final_content)
+        
+        print(f"Successfully updated {md_path}")
+
+    except Exception as e:
+        print(f"Error updating CPU/GPU table: {str(e)}")
+        raise
 
 if __name__ == '__main__':
-    root_dir = '.'  # Specify root directory of notebooks
+    root_dir = '.'
     readme_path = 'README.md'
-    table_md_path = 'Notebook_Table_Type(Serial_Parallel).md'
+    serial_parallel_path = 'Notebook_Table_Type(Serial_Parallel).md'
+    cpu_gpu_path = 'Notebook_Table_Type(CPU_GPU).md'
 
     notebooks = []
+    print("Scanning for notebooks...")
     for dirpath, _, filenames in os.walk(root_dir):
         for filename in filenames:
             if filename.endswith('.ipynb'):
                 project = os.path.basename(dirpath)
-                notebooks.append((project, os.path.join(dirpath, filename)))
+                notebook_path = os.path.join(dirpath, filename)
+                print(f"Found notebook: {notebook_path}")
+                notebooks.append((project, notebook_path))
 
-    # Update both README.md and Notebook_Table_Type(Serial_Parallel).md
+    print(f"Found {len(notebooks)} notebooks")
+
+    # Update all three files
     update_readme(notebooks, readme_path)
-    update_notebook_table(notebooks, table_md_path)
+    update_notebook_table(notebooks, serial_parallel_path)
+    update_cpu_gpu_table(notebooks, cpu_gpu_path)

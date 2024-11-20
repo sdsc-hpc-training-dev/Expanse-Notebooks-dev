@@ -5,7 +5,8 @@ on:
     paths:
       - '**/*.ipynb'
       - '**/README.md'
-      - '**/Notebook_Table_Type(Serial_Parallel).md'  # Added this file
+      - '**/Notebook_Table_Type(Serial_Parallel).md'
+      - '**/Notebook_Table_Type(CPU_GPU).md'
     branches:
       - keyword
       - main
@@ -40,7 +41,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install nbformat pyyaml
           
-      - name: Update README table
+      - name: Update tables
         run: |
           echo "Running update script..."
           python .github/scripts/update_readme_table.py
@@ -52,16 +53,17 @@ jobs:
           git status
           git diff README.md
           git diff "Notebook_Table_Type(Serial_Parallel).md"
+          git diff "Notebook_Table_Type(CPU_GPU).md"
           
       - name: Commit changes
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add README.md "Notebook_Table_Type(Serial_Parallel).md"
+          git add README.md "Notebook_Table_Type(Serial_Parallel).md" "Notebook_Table_Type(CPU_GPU).md"
           if git diff --cached --quiet; then
-            echo "No changes to commiti"
+            echo "No changes to commit"
           else
-            git commit -m "Update README and notebook type tables [skip ci]"
+            git commit -m "Update notebook tables [skip ci]"
             echo "Changes committed"
           fi
           
@@ -70,4 +72,3 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: git_1
-          
