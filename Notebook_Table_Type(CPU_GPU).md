@@ -13,7 +13,6 @@
 | Matplotlib_Intro | [matplotlib_intro.ipynb](./Matplotlib_Intro/matplotlib_intro.ipynb) | CPU, Serial | `matplotlib`, `matplotlib.pyplot`, `numpy` |
 | Multithreaded_Processing_CPU | [multithreaded_processing.ipynb](./Multithreaded_Processing_CPU/multithreaded_processing.ipynb) | CPU, Serial | `mkl`, `numpy`, `dask.array` |
 | Graphs&Networks | [NetworkX.ipynb](./Graphs&Networks/NetworkX.ipynb) | CPU, Serial | `NetworkX`, `matplotlib.pyplot`, `networkx`, `write_dot`, `networkx.drawing.nx_pydot`, `networkx` |
-| sample | [numpy_1.ipynb](./sample/numpy_1.ipynb) | CPU, Serial | `numpy`, `operator`, `add`, `matplotlib.pyplot`, `collections`, `Counter` |
 | NumPy_Intro | [numpy_intro.ipynb](./NumPy_Intro/numpy_intro.ipynb) | CPU, Serial | `numpy`, `operator`, `add`, `matplotlib.pyplot`, `collections`, `Counter` |
 | Python_Data_Analysis_Library | [PandasCSV.ipynb](./Python_Data_Analysis_Library/PandasCSV.ipynb) | CPU, Serial | `IPython.display`, `Image`, `pandas` |
 | Image_Processing | [Pillow.ipynb](./Image_Processing/Pillow.ipynb) | CPU, Serial | `PIL`, `Image`, `sys`, `ImageFilter`, `ImageEnhance` |
