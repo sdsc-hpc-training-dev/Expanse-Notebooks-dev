@@ -6,8 +6,8 @@ Refer to this [User Guide](./Expanse_Notebook_User_Guide.md) for instructions on
 
 The following table lists the notebooks in alphabetical order. To view by type, use the links below:
 
-- [CPU/GPU](./Notebook_Table_Type(CPU\GPU).md)
-- [Serial/Parallel](./Notebook_Table_Type(Serial\Parallel).md)
+- [CPU/GPU](./Notebook_Table_Type(CPU_GPU).md)
+- [Serial/Parallel](./Notebook_Table_Type(Serial_Parallel).md)
 
 
 ### Notebook Table: Alphabetical Order
