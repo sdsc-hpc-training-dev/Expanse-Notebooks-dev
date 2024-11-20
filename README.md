@@ -25,6 +25,7 @@ The following table lists the notebooks in alphabetical order. To view by type, 
 | Hello_World_GPU | [hello_world_gpu.ipynb](./Hello_World_GPU/hello_world_gpu.ipynb) | GPU, Serial |  |
 | Tensorflow_Image_Classification | [Image_Classification.ipynb](./Tensorflow_Image_Classification/Image_Classification.ipynb) | CPU, GPU, Parallel | `tensorflow`, `matplotlib.pyplot`, `numpy`, `PIL`, `keras`, `layers`, `tensorflow.keras`, `tensorflow.keras.models`, `Sequential`, `pathlib` |
 | Clustering_Visulizations | [Introduction_to_Clustering.ipynb](./Clustering_Visulizations/Introduction_to_Clustering.ipynb) | CPU, Serial | `scikit-learn`, `numpy`, `matplotlib`, `sciPy`, `make_blobs`, `KMeans`, `dendrogram`, `linkage`, `AgglomerativeClustering` |
+| sample | [mat_1.ipynb](./sample/mat_1.ipynb) | CPU, Serial | `matplotlib`, `matplotlib.pyplot`, `numpy` |
 | Matplotlib_Intro | [matplotlib_intro.ipynb](./Matplotlib_Intro/matplotlib_intro.ipynb) | CPU, Serial | `matplotlib`, `matplotlib.pyplot`, `numpy` |
 | Multithreaded_Processing_CPU | [multithreaded_processing.ipynb](./Multithreaded_Processing_CPU/multithreaded_processing.ipynb) | CPU, Serial | `mkl`, `numpy`, `dask.array` |
 | Graphs&Networks | [NetworkX.ipynb](./Graphs&Networks/NetworkX.ipynb) | CPU, Serial | `NetworkX`, `matplotlib.pyplot`, `networkx`, `write_dot`, `networkx.drawing.nx_pydot`, `networkx` |
@@ -33,6 +34,7 @@ The following table lists the notebooks in alphabetical order. To view by type, 
 | Image_Processing | [Pillow.ipynb](./Image_Processing/Pillow.ipynb) | CPU, Serial | `PIL`, `Image`, `sys`, `ImageFilter`, `ImageEnhance` |
 | String_Processing | [Regression.ipynb](./String_Processing/Regression.ipynb) | CPU, Serial | `sklearn`, `linear_model`, `mean_squared_error`, `r2_score`, `sklearn.datasets`, `load_diabetes`, `numpy`, `matplotlib.pyplot`, `pandas`, `scipy`, `stats` |
 | Tensorflow_Simple_Training | [SimpleTraining.ipynb](./Tensorflow_Simple_Training/SimpleTraining.ipynb) | CPU,GPU, Parallel | `tensorflow`, `numpy`, `csv`, `matplotlib.pyplot` |
+
 
 
 
