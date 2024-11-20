@@ -20,7 +20,7 @@ The following table lists the notebooks in alphabetical order. To view by type, 
 | Dask_Graph_GPU | [dask_graphs_GPU.ipynb](./Dask_Graph_GPU/dask_graphs_GPU.ipynb) | GPU, Parallel | `dask`, `cupy`, `dask.array`, `array` |
 | Data_Analysis_Cupy | [data_analysis_cupy.ipynb](./Data_Analysis_Cupy/data_analysis_cupy.ipynb) | GPU, Parallel | `cupy`, `cudf`, `pandas`, `numpy` |
 | Data_Analysis | [data_analysis_pandas.ipynb](./Data_Analysis/data_analysis_pandas.ipynb) | CPU, Serial | `numpy`, `pandas` |
-| Decision_Trees | [Decision trees.ipynb](./Decision_Trees/Decision trees.ipynb) | CPU, Serial | `scikit-learn`, `tree`, `sklearn.datasets`, `graphviz`, `load_iris` |
+| Decision_Trees | [Decision_Trees.ipynb](./Decision_Trees/Decision%20trees.ipynb) | CPU, Serial | `scikit-learn`, `tree`, `sklearn.datasets`, `graphviz`, `load_iris` |
 | Hello_World_CPU | [hello_world_cpu.ipynb](./Hello_World_CPU/hello_world_cpu.ipynb) | CPU, Serial |  |
 | Hello_World_GPU | [hello_world_gpu.ipynb](./Hello_World_GPU/hello_world_gpu.ipynb) | GPU, Serial |  |
 | Tensorflow_Image_Classification | [Image Classification.ipynb](./Tensorflow_Image_Classification/Image Classification.ipynb) | CPU, GPU, Parallel | `tensorflow`, `matplotlib.pyplot`, `numpy`, `PIL`, `keras`, `layers`, `tensorflow.keras`, `tensorflow.keras.models`, `Sequential`, `pathlib` |
