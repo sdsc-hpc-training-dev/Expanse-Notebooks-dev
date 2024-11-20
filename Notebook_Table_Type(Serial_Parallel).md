@@ -5,9 +5,6 @@
 | Notebook Project | Notebook | Type | Required (Sub) Modules |
 |-----------------|----------|------|------------------------|
 | CUDA_GPU_Distance_Matrix | [cuda_gpu_nvidia_distance_matrix_solution.ipynb](./CUDA_GPU_Distance_Matrix/cuda_gpu_nvidia_distance_matrix_solution.ipynb) | CPU, Serial |  |
-| sample | [d_2.ipynb](./sample/d_2.ipynb) | CPU, Serial | `numpy`, `pandas` |
-| sample | [d_4.ipynb](./sample/d_4.ipynb) | CPU, Serial | `numpy`, `pandas` |
-| sample | [d_5.ipynb](./sample/d_5.ipynb) | CPU, Serial | `numpy`, `pandas` |
 | Data_Analysis | [data_analysis_pandas.ipynb](./Data_Analysis/data_analysis_pandas.ipynb) | CPU, Serial | `numpy`, `pandas` |
 | Decision_Trees | [Decision_trees.ipynb](./Decision_Trees/Decision_trees.ipynb) | CPU, Serial | `scikit-learn`, `tree`, `sklearn.datasets`, `graphviz`, `load_iris` |
 | Hello_World_CPU | [hello_world_cpu.ipynb](./Hello_World_CPU/hello_world_cpu.ipynb) | CPU, Serial |  |
@@ -16,6 +13,7 @@
 | Matplotlib_Intro | [matplotlib_intro.ipynb](./Matplotlib_Intro/matplotlib_intro.ipynb) | CPU, Serial | `matplotlib`, `matplotlib.pyplot`, `numpy` |
 | Multithreaded_Processing_CPU | [multithreaded_processing.ipynb](./Multithreaded_Processing_CPU/multithreaded_processing.ipynb) | CPU, Serial | `mkl`, `numpy`, `dask.array` |
 | Graphs&Networks | [NetworkX.ipynb](./Graphs&Networks/NetworkX.ipynb) | CPU, Serial | `NetworkX`, `matplotlib.pyplot`, `networkx`, `write_dot`, `networkx.drawing.nx_pydot`, `networkx` |
+| sample | [numpy_1.ipynb](./sample/numpy_1.ipynb) | CPU, Serial | `numpy`, `operator`, `add`, `matplotlib.pyplot`, `collections`, `Counter` |
 | NumPy_Intro | [numpy_intro.ipynb](./NumPy_Intro/numpy_intro.ipynb) | CPU, Serial | `numpy`, `operator`, `add`, `matplotlib.pyplot`, `collections`, `Counter` |
 | Python_Data_Analysis_Library | [PandasCSV.ipynb](./Python_Data_Analysis_Library/PandasCSV.ipynb) | CPU, Serial | `IPython.display`, `Image`, `pandas` |
 | Image_Processing | [Pillow.ipynb](./Image_Processing/Pillow.ipynb) | CPU, Serial | `PIL`, `Image`, `sys`, `ImageFilter`, `ImageEnhance` |
