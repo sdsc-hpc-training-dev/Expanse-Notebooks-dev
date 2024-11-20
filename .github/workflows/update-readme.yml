@@ -4,13 +4,13 @@ on:
   push:
     paths:
       - '**/*.ipynb'
-      - '**/README.md'  # Also trigger on README changes
+      - '**/README.md'
+      - '**/Notebook_Table_Type(Serial\Parallel).md'  # Added this file
     branches:
-      - keyword        # Added your branch name
-      - main          # Kept other branches for future
+      - keyword
+      - main
       - master
       - git_1
-        # Add manual trigger option
   workflow_dispatch:
 
 jobs:
@@ -51,16 +51,17 @@ jobs:
         run: |
           git status
           git diff README.md
+          git diff "Notebook_Table_Type(Serial\Parallel).md"
           
       - name: Commit changes
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add README.md
+          git add README.md "Notebook_Table_Type(Serial\Parallel).md"
           if git diff --cached --quiet; then
-            echo "No changes to commit"
+            echo "No changes to commiti"
           else
-            git commit -m "Update README table [skip ci]"
+            git commit -m "Update README and notebook type tables [skip ci]"
             echo "Changes committed"
           fi
           
@@ -68,4 +69,5 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: git_1  # Explicitly set to your branch
+          branch: git_1
+
