@@ -1,14 +1,15 @@
-## Expanse-Notebooks-dev: Notebook Table Sorted by Type (Serial_Parallel)
+## Expanse-Notebooks-dev: Notebook Table Sorted by Type (Serial/Parallel)
 
-### Serial Notebooks
+### Serial
 
 | Notebook Project | Notebook | Type | Required (Sub) Modules |
 |-----------------|----------|------|------------------------|
 | CUDA_GPU_Distance_Matrix | [cuda_gpu_nvidia_distance_matrix_solution.ipynb](./CUDA_GPU_Distance_Matrix/cuda_gpu_nvidia_distance_matrix_solution.ipynb) | CPU, Serial |  |
-| sample | [d_1.ipynb](./sample/d_1.ipynb) | CPU, Serial | `scikit-learn`, `tree`, `sklearn.datasets`, `graphviz`, `load_iris` |
+| sample | [d_2.ipynb](./sample/d_2.ipynb) | CPU, Serial | `numpy`, `pandas` |
+| sample | [d_4.ipynb](./sample/d_4.ipynb) | CPU, Serial | `numpy`, `pandas` |
+| sample | [d_5.ipynb](./sample/d_5.ipynb) | CPU, Serial | `numpy`, `pandas` |
 | Data_Analysis | [data_analysis_pandas.ipynb](./Data_Analysis/data_analysis_pandas.ipynb) | CPU, Serial | `numpy`, `pandas` |
 | Decision_Trees | [Decision_trees.ipynb](./Decision_Trees/Decision_trees.ipynb) | CPU, Serial | `scikit-learn`, `tree`, `sklearn.datasets`, `graphviz`, `load_iris` |
-| sample | [Decision_trees.ipynb](./sample/Decision_trees.ipynb) | CPU, Serial | `scikit-learn`, `tree`, `sklearn.datasets`, `graphviz`, `load_iris` |
 | Hello_World_CPU | [hello_world_cpu.ipynb](./Hello_World_CPU/hello_world_cpu.ipynb) | CPU, Serial |  |
 | Hello_World_GPU | [hello_world_gpu.ipynb](./Hello_World_GPU/hello_world_gpu.ipynb) | GPU, Serial |  |
 | Clustering_Visulizations | [Introduction_to_Clustering.ipynb](./Clustering_Visulizations/Introduction_to_Clustering.ipynb) | CPU, Serial | `scikit-learn`, `numpy`, `matplotlib`, `sciPy`, `make_blobs`, `KMeans`, `dendrogram`, `linkage`, `AgglomerativeClustering` |
@@ -18,10 +19,9 @@
 | NumPy_Intro | [numpy_intro.ipynb](./NumPy_Intro/numpy_intro.ipynb) | CPU, Serial | `numpy`, `operator`, `add`, `matplotlib.pyplot`, `collections`, `Counter` |
 | Python_Data_Analysis_Library | [PandasCSV.ipynb](./Python_Data_Analysis_Library/PandasCSV.ipynb) | CPU, Serial | `IPython.display`, `Image`, `pandas` |
 | Image_Processing | [Pillow.ipynb](./Image_Processing/Pillow.ipynb) | CPU, Serial | `PIL`, `Image`, `sys`, `ImageFilter`, `ImageEnhance` |
-| sample | [r_1.ipynb](./sample/r_1.ipynb) | CPU, Serial | `sklearn`, `linear_model`, `mean_squared_error`, `r2_score`, `sklearn.datasets`, `load_diabetes`, `numpy`, `matplotlib.pyplot`, `pandas`, `scipy`, `stats` |
 | String_Processing | [Regression.ipynb](./String_Processing/Regression.ipynb) | CPU, Serial | `sklearn`, `linear_model`, `mean_squared_error`, `r2_score`, `sklearn.datasets`, `load_diabetes`, `numpy`, `matplotlib.pyplot`, `pandas`, `scipy`, `stats` |
 
-### Parallel Notebooks
+### Parallel
 
 | Notebook Project | Notebook | Type | Required (Sub) Modules |
 |-----------------|----------|------|------------------------|
