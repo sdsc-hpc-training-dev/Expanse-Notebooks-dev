@@ -1,5 +1,6 @@
-<!-- docs/_sidebar.md -->
+* [Home](/)
+* [User Guide](Expanse_Notebook_User_Guide.md)
+* [Format Guide](Format_Notebook.md)
 
-* [User Guide](../Expanse_Notebook_User_Guide.md)
-* [Format Guide for Notebook](../Format_Notebook.md) 
+
 
