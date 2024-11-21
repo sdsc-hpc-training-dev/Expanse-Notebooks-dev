@@ -7,14 +7,19 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@4/themes/vue.css">
 </head>
 <body>
-  <div id="app"></div>
+  <div id="app">Please wait...</div>
   <script>
     window.$docsify = {
+      el: '#app',
       name: 'SDSC Expanse Notebooks',
       repo: 'https://github.com/sdsc-hpc-training-dev/Expanse-Notebooks-dev',
       loadSidebar: true,
       subMaxLevel: 2,
       auto2top: true,
+      basePath: '../',  // This tells Docsify to look in the parent directory
+      homepage: 'README.md',
+      relativePath: true,
+      coverpage: false,
       search: {
         maxAge: 86400000,
         paths: 'auto',
