@@ -1,33 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="UTF-8">
-  <title>SDSC Expanse Notebooks Documentation</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <title>Your Documentation</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@4/themes/vue.css">
 </head>
 <body>
-  <div id="app">Please wait...</div>
+  <div id="app">Loading...</div>
+  
   <script>
     window.$docsify = {
       el: '#app',
-      name: 'SDSC Expanse Notebooks',
-      repo: 'https://github.com/sdsc-hpc-training-dev/Expanse-Notebooks-dev',
       loadSidebar: true,
       subMaxLevel: 2,
-      auto2top: true,
-      basePath: 'docs/',  // This tells Docsify to look in the parent directory
+      basePath: '../',
       homepage: '../Expanse_Notebook_User_Guide.md',
-      relativePath: true,
-      coverpage: false,
-      search: {
-        maxAge: 86400000,
-        paths: 'auto',
-        placeholder: 'Search',
-        noData: 'No Results!'
-      }
+      relativePath: true
     }
   </script>
+  
   <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/docsify.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.min.js"></script>
 </body>
