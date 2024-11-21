@@ -1,6 +1,6 @@
 ## Expanse-Notebooks-dev: Notebook Table Sorted by Type (Serial/Parallel)
 
-### Serial
+### Serial Notebooks
 
 | Notebook Project | Notebook | Type | Required (Sub) Modules |
 |-----------------|----------|------|------------------------|
@@ -18,7 +18,7 @@
 | Image_Processing | [Pillow.ipynb](./Image_Processing/Pillow.ipynb) | CPU, Serial | `PIL`, `Image`, `sys`, `ImageFilter`, `ImageEnhance` |
 | String_Processing | [Regression.ipynb](./String_Processing/Regression.ipynb) | CPU, Serial | `sklearn`, `linear_model`, `mean_squared_error`, `r2_score`, `sklearn.datasets`, `load_diabetes`, `numpy`, `matplotlib.pyplot`, `pandas`, `scipy`, `stats` |
 
-### Parallel
+### Parallel Notebooks
 
 | Notebook Project | Notebook | Type | Required (Sub) Modules |
 |-----------------|----------|------|------------------------|
