@@ -14,9 +14,12 @@
       name: 'Expanse Notebooks Documentation',
       repo: 'sdsc-hpc-training-dev/Expanse-Notebooks-dev',
       loadSidebar: true,
-      basePath: '../',
-      homepage: '../Expanse_Notebook_User_Guide.md', // Set the User Guide as homepage
+      basePath: './',  // Changed to current directory first for testing
+      homepage: 'README.md',  // Changed temporarily to see if we can load any markdown
       auto2top: true,
+      onlyCover: false,
+      debug: true,  // Enable debug mode
+      notFoundPage: true,  // Show custom 404 page
     }
   </script>
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
