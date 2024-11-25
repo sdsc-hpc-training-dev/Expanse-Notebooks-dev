@@ -1,0 +1,8 @@
+title: Expanse Notebooks
+description: Documentation for Expanse Notebooks
+theme: jekyll-theme-cayman
+markdown: kramdown
+include:
+  - "*.md"
+  - "*.markdown"
+baseurl: "/Expanse-Notebooks-dev"
