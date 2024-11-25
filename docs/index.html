@@ -16,10 +16,15 @@
             loadSidebar: true,
             subMaxLevel: 3,
             auto2top: true,
-            basePath: '../',
-            homepage: 'Expanse_Notebook_User_Guide.md',  // Changed this to your desired homepage
+            basePath: '/',
+            homepage: './Expanse_Notebook_User_Guide.md',
             relativePath: true,
-            notFoundPage: true
+            notFoundPage: {
+                '/': '_404.md'
+            },
+            alias: {
+                '/.*/_sidebar.md': '/_sidebar.md'
+            }
         };
     </script>
     <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
