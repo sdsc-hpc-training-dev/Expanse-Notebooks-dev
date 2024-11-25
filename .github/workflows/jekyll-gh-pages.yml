@@ -1,8 +1,8 @@
-name: Deploy Jekyll with GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ "git_1" ]  # Set this to your branch name
+    branches: [ "git_1" ]
   workflow_dispatch:
 
 permissions:
@@ -10,32 +10,38 @@ permissions:
   pages: write
   id-token: write
 
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          ref: git_1  # Explicitly checkout git_1 branch
+      
       - name: Setup Pages
         uses: actions/configure-pages@v4
-      - name: Build with Jekyll
+      
+      - name: Copy files to docs
+        run: |
+          cp Expanse_Notebook_User_Guide.md docs/
+          cp Format_Notebook.md docs/
+          
+      - name: Build
         uses: actions/jekyll-build-pages@v1
         with:
           source: ./docs
           destination: ./_site
+          
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 
   deploy:
+    needs: build
+    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
