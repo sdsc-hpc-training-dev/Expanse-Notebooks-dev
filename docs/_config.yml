@@ -2,19 +2,26 @@ title: Expanse Notebooks
 description: Documentation for Expanse Notebooks
 theme: jekyll-theme-cayman
 markdown: kramdown
+
+# Explicitly include all markdown files
 include:
   - "*.md"
   - "*.markdown"
-baseurl: "/New_Expanse-Notebooks_dev"  # Updated to match your repo name
 
-# Add navigation
+# Specify the base URL
+baseurl: "/Expanse-Notebooks-dev"
+
+# Ensure proper source of files
+source: ..
+
+# Navigation
 defaults:
   - scope:
       path: ""
     values:
       layout: default
 
-# Sidebar navigation
+# Sidebar-like navigation
 nav:
   - title: Home
     url: /
