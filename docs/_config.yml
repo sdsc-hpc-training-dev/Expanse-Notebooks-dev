@@ -5,4 +5,20 @@ markdown: kramdown
 include:
   - "*.md"
   - "*.markdown"
-baseurl: "/Expanse-Notebooks-dev"
+baseurl: "/New_Expanse-Notebooks_dev"  # Updated to match your repo name
+
+# Add navigation
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
+
+# Sidebar navigation
+nav:
+  - title: Home
+    url: /
+  - title: User Guide
+    url: /Expanse_Notebook_User_Guide
+  - title: Format Guide
+    url: /Format_Notebook
