@@ -29,12 +29,6 @@ jobs:
           cp Expanse_Notebook_User_Guide.md docs/
           cp Format_Notebook.md docs/
           
-          # Create a list of all README.md files
-          find . -name README.md -not -path "./docs/*" | while read readme; do
-            dir=$(dirname "$readme")
-            cp "$readme" "docs/${dir//\//_}_README.md"
-          done
-          
       - name: Build
         uses: actions/jekyll-build-pages@v1
         with:

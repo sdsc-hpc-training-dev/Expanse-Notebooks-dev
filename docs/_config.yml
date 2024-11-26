@@ -14,18 +14,16 @@ baseurl: "/Expanse-Notebooks-dev"
 # Ensure proper source of files
 source: ..
 
-# Navigation
-defaults:
-  - scope:
-      path: ""
-    values:
-      layout: default
-
-# Sidebar-like navigation
-nav:
+# Custom sidebar data
+sidebar:
   - title: Home
     url: /
-  - title: User Guide
-    url: /Expanse_Notebook_User_Guide
-  - title: Format Guide
-    url: /Format_Notebook
+
+  - title: Main Guides
+    sublinks:
+      - title: README
+        url: /README
+      - title: User Guide
+        url: /Expanse_Notebook_User_Guide
+      - title: Format Guide
+        url: /Format_Notebook
