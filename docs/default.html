@@ -7,28 +7,30 @@
     <title>{{ page.title | default: site.title }}</title>
     <link rel="stylesheet" href="{{ "/assets/css/style.css" | relative_url }}">
     <style>
-      /* Remove default header styling */
-      header {
-        display: none;
+      /* Custom header styling */
+      .custom-header {
+        background-color: #f4f4f4;
+        padding: 20px;
+        text-align: center;
+        margin-bottom: 20px;
       }
       
-      /* Adjust content to full width */
-      .wrapper {
-        width: 100%;
-        max-width: 100%;
+      .custom-header h1 {
+        color: #333;
         margin: 0;
-        padding: 20px;
+        font-size: 2.5em;
       }
       
-      section {
-        width: 100%;
-        max-width: 100%;
-        margin: 0;
-        padding: 20px;
+      .custom-header p {
+        color: #666;
+        margin-top: 10px;
       }
     </style>
   </head>
   <body>
+    <div class="custom-header">
+      <h1>Expanse Notebooks Documentation</h1>
+    </div>
     <div class="wrapper">
       <section>
         {{ content }}
