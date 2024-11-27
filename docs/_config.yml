@@ -6,7 +6,7 @@ url: "https://sdsc-hpc-training-dev.github.io" # the base hostname & protocol fo
 
 # Build settings
 markdown: kramdown
-theme: theme: jekyll-theme-cayman
+theme: jekyll-theme-cayman
 
 # Plugins
 plugins:
