@@ -9,4 +9,4 @@ title: Expanse Notebook User Guide
 
 ## Additional Information
 
-If you want the example of the JuypterNotebook, refer to [README.md](../README.md)
+If you want the example of the JuypterNotebook, refer to [README.md](../Expanse-Notebooks-dev/README.md)
