@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ page.title | default: site.title }}</title>
+    <link rel="stylesheet" href="{{ "/assets/css/style.css" | relative_url }}">
+    <style>
+      /* Remove default header styling */
+      header {
+        display: none;
+      }
+      
+      /* Adjust content to full width */
+      .wrapper {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding: 20px;
+      }
+      
+      section {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <section>
+        {{ content }}
+      </section>
+    </div>
+  </body>
+</html>
